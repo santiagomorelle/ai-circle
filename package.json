@@ -1,0 +1,19 @@
+{
+  "name": "ai-circle",
+  "version": "1.0.0",
+  "description": "Circle with ✦ to display on top of elements while navigating.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiagomorelle/ai-circle.git"
+  },
+  "author": "Santiago Morelle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiagomorelle/ai-circle/issues"
+  },
+  "homepage": "https://github.com/santiagomorelle/ai-circle#readme"
+}
