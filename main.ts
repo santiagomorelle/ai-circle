@@ -9,8 +9,11 @@ let styleSheet: HTMLStyleElement | null = null;
 const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     const circleElement = document.createElement('div');
     const gradient = color === "PURPLE"
-        ? 'radial-gradient(circle, #a64bd3, #4b007d)'
+        ? 'radial-gradient(circle, #7c3aed, #4b007d)'
         : 'radial-gradient(circle, #5f9eff, #003f9f)';
+    const boxShadow = color === "PURPLE"
+        ? '0 0 15px 5px rgba(124, 58, 237, 0.5), 0 0 30px 15px rgba(124, 58, 237, 0.3)'
+        : '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)';
     circleElement.style.width = '60px';
     circleElement.style.height = '60px';
     circleElement.style.background = gradient;
@@ -20,7 +23,7 @@ const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     circleElement.style.display = 'flex';
     circleElement.style.alignItems = 'center';
     circleElement.style.justifyContent = 'center';
-    circleElement.style.boxShadow = '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)';
+    circleElement.style.boxShadow = boxShadow;
     circleElement.style.animation = 'glow-right 2s infinite';
     circleElement.style.pointerEvents = 'none';
     circleElement.style.zIndex = '9999';
