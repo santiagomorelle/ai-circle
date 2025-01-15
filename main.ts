@@ -12,14 +12,16 @@ const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     // Define gradient and boxShadow based on color
     const gradient =
         color === "PURPLE"
-            ? 'radial-gradient(circle, #9c27b0, #6a0080)'  // More intense purple
+            // Less intense => #9f7aea, then more intense => #7c3aed
+            ? 'radial-gradient(circle, #9f7aea, #7c3aed)'
             : color === "GRAY"
             ? 'radial-gradient(circle, #c0c0c0, #808080)'
             : 'radial-gradient(circle, #5f9eff, #003f9f)'; // default to BLUE
 
     const boxShadow =
         color === "PURPLE"
-            ? '0 0 15px 5px rgba(156, 39, 176, 0.6), 0 0 30px 15px rgba(106, 0, 128, 0.3)' // Stronger purple glow
+            // Using the same color scheme in box-shadow for a coherent glow
+            ? '0 0 15px 5px rgba(159, 122, 234, 0.6), 0 0 30px 15px rgba(124, 58, 237, 0.3)'
             : color === "GRAY"
             ? '0 0 15px 5px rgba(192,192,192,0.5), 0 0 30px 15px rgba(128,128,128,0.3)'
             : '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)'; // default to BLUE
@@ -127,7 +129,7 @@ const showCircle = (targetElement: HTMLElement, color: string = "BLUE"): void =>
         // Update background based on selected color
         circle.style.background =
             color === "PURPLE"
-                ? 'radial-gradient(circle, #9c27b0, #6a0080)'  // Same as above for consistency
+                ? 'radial-gradient(circle, #9f7aea, #7c3aed)'
                 : color === "GRAY"
                 ? 'radial-gradient(circle, #c0c0c0, #808080)'
                 : 'radial-gradient(circle, #5f9eff, #003f9f)'; // default to BLUE
