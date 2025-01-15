@@ -3,16 +3,16 @@ let styleSheet: HTMLStyleElement | null = null;
 
 /**
  * Creates a glowing circle element.
- * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
+ * @param {string} color - The color of the glowing circle (BLUE or GRAY).
  * @returns {HTMLElement} The glowing circle element.
  */
 const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     const circleElement = document.createElement('div');
-    const gradient = color === "PURPLE"
-        ? 'radial-gradient(circle, #b19cd9, #a78bfa)'
+    const gradient = color === "GRAY"
+        ? 'radial-gradient(circle, #c0c0c0, #808080)'
         : 'radial-gradient(circle, #5f9eff, #003f9f)';
-    const boxShadow = color === "PURPLE"
-        ? '0 0 15px 5px rgba(177, 156, 217, 0.5), 0 0 30px 15px rgba(177, 156, 217, 0.3)'
+    const boxShadow = color === "GRAY"
+        ? '0 0 15px 5px rgba(192,192,192,0.5), 0 0 30px 15px rgba(128,128,128,0.3)'
         : '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)';
     circleElement.style.width = '60px';
     circleElement.style.height = '60px';
@@ -83,7 +83,7 @@ const updateCirclePosition = (targetElement: HTMLElement): void => {
 /**
  * Creates and attaches a glowing circle to the DOM if it doesn't already exist.
  * @param {HTMLElement} targetElement - The target element.
- * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
+ * @param {string} color - The color of the glowing circle (BLUE or GRAY).
  */
 const createGlowingMovingCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (circle) return;
@@ -104,15 +104,15 @@ const createGlowingMovingCircle = (targetElement: HTMLElement, color: string = "
 /**
  * Shows the glowing circle by creating it or making it visible.
  * @param {HTMLElement} targetElement - The target element.
- * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
+ * @param {string} color - The color of the glowing circle (BLUE or GRAY).
  */
 const showCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (!circle) {
         createGlowingMovingCircle(targetElement, color);
     } else {
         circle.style.display = 'flex';
-        circle.style.background = color === "PURPLE"
-            ? 'radial-gradient(circle, #a64bd3, #4b007d)'
+        circle.style.background = color === "GRAY"
+            ? 'radial-gradient(circle, #c0c0c0, #808080)'
             : 'radial-gradient(circle, #5f9eff, #003f9f)';
         updateCirclePosition(targetElement);
     }
