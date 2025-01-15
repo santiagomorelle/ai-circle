@@ -31,7 +31,10 @@ const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     circleElement.style.height = '60px';
     circleElement.style.background = gradient;
     circleElement.style.borderRadius = '50%';
-    circleElement.style.position = 'absolute';
+
+    // IMPORTANT: Use 'fixed' so the circle is positioned relative to the viewport.
+    circleElement.style.position = 'fixed';
+
     circleElement.style.transform = 'translate(-50%, -50%)';
     circleElement.style.display = 'flex';
     circleElement.style.alignItems = 'center';
