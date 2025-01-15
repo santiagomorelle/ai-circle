@@ -3,17 +3,28 @@ let styleSheet: HTMLStyleElement | null = null;
 
 /**
  * Creates a glowing circle element.
- * @param {string} color - The color of the glowing circle (BLUE or GRAY).
- * @returns {HTMLElement} The glowing circle element.
+ * @param {string} color - The color of the glowing circle (BLUE, GRAY, or PURPLE).
+ * @returns {HTMLDivElement} The glowing circle element.
  */
 const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     const circleElement = document.createElement('div');
-    const gradient = color === "GRAY"
-        ? 'radial-gradient(circle, #c0c0c0, #808080)'
-        : 'radial-gradient(circle, #5f9eff, #003f9f)';
-    const boxShadow = color === "GRAY"
-        ? '0 0 15px 5px rgba(192,192,192,0.5), 0 0 30px 15px rgba(128,128,128,0.3)'
-        : '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)';
+
+    // Define gradient and boxShadow based on color
+    const gradient =
+        color === "PURPLE"
+            ? 'radial-gradient(circle, #b19cd9, #a78bfa)'
+            : color === "GRAY"
+            ? 'radial-gradient(circle, #c0c0c0, #808080)'
+            : 'radial-gradient(circle, #5f9eff, #003f9f)'; // default to BLUE
+
+    const boxShadow =
+        color === "PURPLE"
+            ? '0 0 15px 5px rgba(177, 156, 217, 0.5), 0 0 30px 15px rgba(177, 156, 217, 0.3)'
+            : color === "GRAY"
+            ? '0 0 15px 5px rgba(192,192,192,0.5), 0 0 30px 15px rgba(128,128,128,0.3)'
+            : '0 0 15px 5px rgba(0, 63, 159, 0.5), 0 0 30px 15px rgba(0, 63, 159, 0.3)'; // default to BLUE
+
+    // Basic styling for the circle
     circleElement.style.width = '60px';
     circleElement.style.height = '60px';
     circleElement.style.background = gradient;
@@ -27,12 +38,13 @@ const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     circleElement.style.animation = 'glow-right 2s infinite';
     circleElement.style.pointerEvents = 'none';
     circleElement.style.zIndex = '9999';
+
     return circleElement;
 }
 
 /**
  * Creates the icon element for the glowing circle.
- * @returns {HTMLElement} The icon element.
+ * @returns {HTMLDivElement} The icon element.
  */
 const createIconElement = (): HTMLDivElement => {
     const icon = document.createElement('div');
@@ -83,7 +95,7 @@ const updateCirclePosition = (targetElement: HTMLElement): void => {
 /**
  * Creates and attaches a glowing circle to the DOM if it doesn't already exist.
  * @param {HTMLElement} targetElement - The target element.
- * @param {string} color - The color of the glowing circle (BLUE or GRAY).
+ * @param {string} color - The color of the glowing circle (BLUE, GRAY, or PURPLE).
  */
 const createGlowingMovingCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (circle) return;
@@ -104,16 +116,22 @@ const createGlowingMovingCircle = (targetElement: HTMLElement, color: string = "
 /**
  * Shows the glowing circle by creating it or making it visible.
  * @param {HTMLElement} targetElement - The target element.
- * @param {string} color - The color of the glowing circle (BLUE or GRAY).
+ * @param {string} color - The color of the glowing circle (BLUE, GRAY, or PURPLE).
  */
 const showCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (!circle) {
         createGlowingMovingCircle(targetElement, color);
     } else {
         circle.style.display = 'flex';
-        circle.style.background = color === "GRAY"
-            ? 'radial-gradient(circle, #c0c0c0, #808080)'
-            : 'radial-gradient(circle, #5f9eff, #003f9f)';
+
+        // Update background based on selected color
+        circle.style.background =
+            color === "PURPLE"
+                ? 'radial-gradient(circle, #b19cd9, #a78bfa)'
+                : color === "GRAY"
+                ? 'radial-gradient(circle, #c0c0c0, #808080)'
+                : 'radial-gradient(circle, #5f9eff, #003f9f)'; // default to BLUE
+
         updateCirclePosition(targetElement);
     }
 }
