@@ -3,13 +3,17 @@ let styleSheet: HTMLStyleElement | null = null;
 
 /**
  * Creates a glowing circle element.
+ * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
  * @returns {HTMLElement} The glowing circle element.
  */
-const createCircleElement = (): HTMLDivElement => {
+const createCircleElement = (color: string = "BLUE"): HTMLDivElement => {
     const circleElement = document.createElement('div');
+    const gradient = color === "PURPLE"
+        ? 'radial-gradient(circle, #a64bd3, #4b007d)'
+        : 'radial-gradient(circle, #5f9eff, #003f9f)';
     circleElement.style.width = '60px';
     circleElement.style.height = '60px';
-    circleElement.style.background = 'radial-gradient(circle, #5f9eff, #003f9f)';
+    circleElement.style.background = gradient;
     circleElement.style.borderRadius = '50%';
     circleElement.style.position = 'absolute';
     circleElement.style.transform = 'translate(-50%, -50%)';
@@ -76,13 +80,14 @@ const updateCirclePosition = (targetElement: HTMLElement): void => {
 /**
  * Creates and attaches a glowing circle to the DOM if it doesn't already exist.
  * @param {HTMLElement} targetElement - The target element.
+ * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
  */
-const createGlowingMovingCircle = (targetElement: HTMLElement): void => {
+const createGlowingMovingCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (circle) return;
 
     addGlowAnimationStyles();
 
-    circle = createCircleElement();
+    circle = createCircleElement(color);
     const icon = createIconElement();
     circle.appendChild(icon);
 
@@ -96,12 +101,16 @@ const createGlowingMovingCircle = (targetElement: HTMLElement): void => {
 /**
  * Shows the glowing circle by creating it or making it visible.
  * @param {HTMLElement} targetElement - The target element.
+ * @param {string} color - The color of the glowing circle (BLUE or PURPLE).
  */
-const showCircle = (targetElement: HTMLElement): void => {
+const showCircle = (targetElement: HTMLElement, color: string = "BLUE"): void => {
     if (!circle) {
-        createGlowingMovingCircle(targetElement);
+        createGlowingMovingCircle(targetElement, color);
     } else {
         circle.style.display = 'flex';
+        circle.style.background = color === "PURPLE"
+            ? 'radial-gradient(circle, #a64bd3, #4b007d)'
+            : 'radial-gradient(circle, #5f9eff, #003f9f)';
         updateCirclePosition(targetElement);
     }
 }
@@ -132,7 +141,7 @@ const destroyCircle = (): void => {
 }
 
 interface CircleControls {
-    showCircle: (targetElement: HTMLElement) => void;
+    showCircle: (targetElement: HTMLElement, color?: string) => void;
     hideCircle: () => void;
     destroyCircle: () => void;
 }
